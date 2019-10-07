@@ -40,7 +40,6 @@ namespace LeilaoEntrega
                         //exibir sequência de entregas
                         break;
                     }
-
             }
 
         }
