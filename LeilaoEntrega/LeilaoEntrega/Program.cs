@@ -57,5 +57,22 @@ namespace LeilaoEntrega
             System.Console.WriteLine("Conteúdo do texto\n\n" + text);
             Console.ReadLine();
         }
+
+        public static void matrizendereço()
+        {
+            Console.WriteLine("matriz de endereços");
+            string[] destino = new string[5];
+            for (int i = 0; i < destino.Length; i++) //recebe matirz
+            {
+                Console.WriteLine("informe o nome do endereço " + i + ".");
+                destino[i] = Console.ReadLine();
+            }
+            for (int i = 0; i < destino.Length; i++) //imprime matriz
+            {
+                Console.WriteLine($"detino[{i}] = {destino[i]}");
+                Console.ReadLine(); //imprime a cada enter corrigir
+            }
+        }
+
     }
 }
