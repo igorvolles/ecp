@@ -23,25 +23,39 @@ namespace LeilaoEntrega
 
             switch (opcao)
             {
-                case 1:
-                    {
-                        //carregar lista de destinos
-                        break;
-                    }
+                case 1: LerListaDestino();                                                          
+                    break;          
+                case 2: LerListaEntregas();
+                    break;
+                case 3: //exibir sequência de entregas                        
+                    break;                    
+            }                       
+        }
 
-                case 2:
-                    {
-                        // carregar lista de entregas
-                        break;
-                    }
+        public static void LerListaDestino()
+        {
+            Console.Clear();
+            string arquivo;
+            Console.WriteLine("_____ Leilão de entregas _____");
+            Console.WriteLine("1 - Carregar lista de destinos");
+            Console.Write("Informe o diretório do arquivo txt: ");
+            arquivo = Console.ReadLine();
+            String text = System.IO.File.ReadAllText(arquivo);
+            System.Console.WriteLine("Conteúdo do texto\n\n" + text);
+            Console.ReadLine();
+        }
 
-                case 3:
-                    {
-                        //exibir sequência de entregas
-                        break;
-                    }
-            }
-
+        public static void LerListaEntregas()
+        {
+            Console.Clear();
+            string arquivo;
+            Console.WriteLine("_____ Leilão de entregas _____");
+            Console.WriteLine("2 - Carregar lista de entregas");
+            Console.Write("Informe o diretório do arquivo txt: ");
+            arquivo = Console.ReadLine();
+            String text = System.IO.File.ReadAllText(arquivo);
+            System.Console.WriteLine("Conteúdo do texto\n\n" + text);
+            Console.ReadLine();
         }
     }
 }
