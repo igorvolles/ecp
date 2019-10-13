@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace LeilaoEntrega
 {
@@ -11,7 +11,7 @@ namespace LeilaoEntrega
     {
         static void Main(string[] args)
         {
-            int opcao;
+            int opcao = 0;
 
             Console.WriteLine("_____ Leilão de entregas _____");
             Console.WriteLine("Escolha uma das opções abaixo:");
@@ -27,22 +27,38 @@ namespace LeilaoEntrega
                     break;          
                 case 2: LerListaEntregas();
                     break;
-                case 3: //exibir sequência de entregas                        
+                case 3:                     
+                    //exibir sequência de entregas                        
                     break;                    
             }                       
         }
 
         public static void LerListaDestino()
         {
+            string resp = "";
             Console.Clear();
             string arquivo;
+            int matriz = 0;
             Console.WriteLine("_____ Leilão de entregas _____");
             Console.WriteLine("1 - Carregar lista de destinos");
-            Console.Write("Informe o diretório do arquivo txt: ");
-            arquivo = Console.ReadLine();
-            String text = System.IO.File.ReadAllText(arquivo);
-            System.Console.WriteLine("Conteúdo do texto\n\n" + text);
-            Console.ReadLine();
+            arquivo = LerArquivoTxt();
+            Console.WriteLine("Conteúdo do texto\n\n" + arquivo);
+            Console.WriteLine("Os dados estão corretos? (S/N)");
+            resp = Console.ReadLine().ToUpper();
+            if (resp == "S")
+            {
+                matriz = LerTamanhoMatriz(arquivo);
+                Console.WriteLine("Dados carregados com sucesso!");
+                Console.WriteLine("Matriz " + matriz + " x " + matriz + " criada");
+                Console.ReadKey();
+
+            }
+            else if (resp != "S" || resp != "N")
+            {
+                Console.WriteLine("Resposra inválida");
+                Console.WriteLine("Os dados estão corretos? (S/N)");
+                resp = Console.ReadLine().ToUpper();
+            }
         }
 
         public static void LerListaEntregas()
@@ -50,29 +66,42 @@ namespace LeilaoEntrega
             Console.Clear();
             string arquivo;
             Console.WriteLine("_____ Leilão de entregas _____");
-            Console.WriteLine("2 - Carregar lista de entregas");
-            Console.Write("Informe o diretório do arquivo txt: ");
-            arquivo = Console.ReadLine();
-            String text = System.IO.File.ReadAllText(arquivo);
-            System.Console.WriteLine("Conteúdo do texto\n\n" + text);
-            Console.ReadLine();
+            Console.WriteLine("2 - Carregar lista de entregas");            
+            arquivo = LerArquivoTxt();
+            System.Console.WriteLine("Conteúdo do texto\n\n" + arquivo);
+            Console.ReadKey();
         }
 
-        public static void matrizendereço()
+        public static void MatrizEndereco(int tamanhoMatriz)
         {
+            int linha = tamanhoMatriz;
+            int coluna = tamanhoMatriz;
             Console.WriteLine("matriz de endereços");
-            string[] destino = new string[5];
-            for (int i = 0; i < destino.Length; i++) //recebe matirz
+            int[,] matriz = new int[linha, coluna];
+            for (int j = 0; j < matriz.Length; j++) //ler  coluna
             {
-                Console.WriteLine("informe o nome do endereço " + i + ".");
-                destino[i] = Console.ReadLine();
-            }
-            for (int i = 0; i < destino.Length; i++) //imprime matriz
-            {
-                Console.WriteLine($"detino[{i}] = {destino[i]}");
-                Console.ReadLine(); //imprime a cada enter corrigir
+                for (int i = 1; i <= matriz.Length; i++) //ler linha
+                {
+                    matriz[j, i] = Convert.ToInt32(file.ReadLine());
+                }
             }
         }
 
+        public static int LerTamanhoMatriz(string txt)
+        {
+            int tamanho_matriz;           
+            StreamReader file = new StreamReader(txt);
+            tamanho_matriz = Convert.ToInt32(file.ReadLine());
+            return tamanho_matriz; //retornar tamanho da matriz
+        }
+
+        public static string LerArquivoTxt()
+        {
+            string txt = "";            
+            Console.WriteLine("Informe o diretório do arquivo txt:");                         
+            string diretorio = Console.ReadLine();
+            txt = File.ReadAllText(diretorio);
+            return txt; //retornar arquivo txt
+        }
     }
 }
