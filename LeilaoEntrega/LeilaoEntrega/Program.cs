@@ -82,7 +82,7 @@ namespace LeilaoEntrega
             {
                 for (int i = 1; i <= matriz.Length; i++) //ler linha
                 {
-                    matriz[j, i] = Convert.ToInt32(file.ReadLine());
+                    //matriz[j, i] = Convert.ToInt32(file.ReadLine());
                 }
             }
         }
