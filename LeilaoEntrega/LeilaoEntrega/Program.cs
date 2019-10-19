@@ -37,17 +37,18 @@ namespace LeilaoEntrega
         {
             string resp = "";
             Console.Clear();
-            string arquivo;
+            string diretorio;
             int matriz = 0;
             Console.WriteLine("_____ Leilão de entregas _____");
             Console.WriteLine("1 - Carregar lista de destinos");
-            arquivo = LerArquivoTxt();
-            Console.WriteLine("Conteúdo do texto\n\n" + arquivo);
+            diretorio = LerArquivoTxt();
+            string txt = File.ReadAllText(diretorio);
+            Console.WriteLine("Conteúdo do texto\n\n" + txt);
             Console.WriteLine("Os dados estão corretos? (S/N)");
             resp = Console.ReadLine().ToUpper();
             if (resp == "S")
             {
-                matriz = LerTamanhoMatriz(arquivo);
+                matriz = LerTamanhoMatriz(diretorio);
                 Console.WriteLine("Dados carregados com sucesso!");
                 Console.WriteLine("Matriz " + matriz + " x " + matriz + " criada");
                 Console.ReadKey();
@@ -89,7 +90,7 @@ namespace LeilaoEntrega
 
         public static int LerTamanhoMatriz(string txt)
         {
-            int tamanho_matriz;           
+            int tamanho_matriz;
             StreamReader file = new StreamReader(txt);
             tamanho_matriz = Convert.ToInt32(file.ReadLine());
             return tamanho_matriz; //retornar tamanho da matriz
@@ -97,11 +98,9 @@ namespace LeilaoEntrega
 
         public static string LerArquivoTxt()
         {
-            string txt = "";            
             Console.WriteLine("Informe o diretório do arquivo txt:");                         
             string diretorio = Console.ReadLine();
-            txt = File.ReadAllText(diretorio);
-            return txt; //retornar arquivo txt
+            return diretorio;
         }
     }
 }
