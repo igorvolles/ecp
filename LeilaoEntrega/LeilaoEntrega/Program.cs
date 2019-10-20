@@ -59,7 +59,7 @@ namespace LeilaoEntrega
                 Console.WriteLine("LISTA DE DESTINOS");
                 Console.WriteLine("------------------------------");
                 TamanhoMatriz = LerTamanhoMatriz(diretorio);
-                AlimentarMatriz(TamanhoMatriz, diretorio);
+                AlimentarMatriz(diretorio);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
                 Console.WriteLine("Dados carregados com sucesso!");  
@@ -101,7 +101,7 @@ namespace LeilaoEntrega
                 Console.WriteLine("LISTA ENTREGAS");
                 Console.WriteLine("------------------------------");
                 TamanhoMatriz = LerTamanhoMatriz(diretorio);
-                AlimentarMatriz(TamanhoMatriz, diretorio);
+                AlimentarMatriz(diretorio);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
                 Console.WriteLine("Dados carregados com sucesso!");
@@ -117,7 +117,7 @@ namespace LeilaoEntrega
             }
         }
 
-        public static void AlimentarMatriz(int tamanhoMatriz, string diretorio)
+        public static void AlimentarMatriz(string diretorio)
         {
             StreamReader file = new StreamReader(diretorio);
             int linha = int.Parse(file.ReadLine());
