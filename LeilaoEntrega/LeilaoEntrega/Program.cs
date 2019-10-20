@@ -81,21 +81,25 @@ namespace LeilaoEntrega
             int linha = int.Parse(file.ReadLine());
             int coluna = linha;
             string[,] matriz = new string[linha, coluna];
-            for  (int j = 0; j < coluna; j++)
-            {
-                for (int i = 0; i < linha; i++)
-                {
-                    matriz[i, j] = file.ReadLine(); // como incluir a porra do separador
-                }
-            }
             for (int i = 0; i < linha; i++)
+            {
+                string linhaLida = file.ReadLine();
+                string[] dados = linhaLida.Split(',');
+                for (int j = 0; j < coluna; j++)
+                {
+                    matriz[i, j] = dados[j];
+                }
+                matriz[i, coluna - 1] = dados[coluna - 1];
+            }
+            for (int i = 0; i < linha; i ++)
             {
                 for (int j = 0; j < coluna; j++)
                 {
-                    Console.Write(matriz[i,j]);
+                    Console.Write(matriz[i, j]);
+                    Console.Write(" ");
                 }
+                Console.WriteLine("");
             }
-            Console.ReadLine();
         }
 
         public static int LerTamanhoMatriz(string txt)
