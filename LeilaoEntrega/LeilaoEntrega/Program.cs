@@ -13,7 +13,7 @@ namespace LeilaoEntrega
         {
             int opcao = 0;
 
-            Console.WriteLine("_____ Leilão de entregas _____");
+            Console.WriteLine("_____ LEILÃO DE ENTREGAS _____");
             Console.WriteLine("Escolha uma das opções abaixo:");
             Console.WriteLine("1 - Carregar lista de destinos");
             Console.WriteLine("2 - Carregar lista de entregas");
@@ -35,30 +35,41 @@ namespace LeilaoEntrega
 
         public static void LerListaDestino()
         {
-            string resp = "";
-            Console.Clear();
+            string resp = ""; 
             string diretorio;
-            int matriz = 0;
-            Console.WriteLine("_____ Leilão de entregas _____");
+            int TamanhoMatriz = 0;
+            Console.Clear();
+            Console.WriteLine("_____ LEILÃO DE ENTREGAS _____");
+            Console.WriteLine("------------------------------");
             Console.WriteLine("1 - Carregar lista de destinos");
+            Console.WriteLine("------------------------------");
             diretorio = LerArquivoTxt();
             string txt = File.ReadAllText(diretorio);
-            Console.WriteLine("Conteúdo do texto\n\n" + txt);
-            Console.WriteLine("Os dados estão corretos? (S/N)");
+            Console.WriteLine("\nConteúdo do arquivo");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(txt);
+            Console.WriteLine("------------------------------");
+            Console.Write("Os dados estão corretos? (S/N): ");
             resp = Console.ReadLine().ToUpper();
             if (resp == "S")
             {
-                matriz = LerTamanhoMatriz(diretorio);
-                AlimentarMatriz(matriz, diretorio);
-                Console.WriteLine("Dados carregados com sucesso!");
-                Console.WriteLine("Matriz " + matriz + " x " + matriz + " criada");
+                Console.Clear();
+                Console.WriteLine("_____ LEILÃO DE ENTREGAS _____");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("LISTA DE DESTINOS");
+                Console.WriteLine("------------------------------");
+                TamanhoMatriz = LerTamanhoMatriz(diretorio);
+                AlimentarMatriz(TamanhoMatriz, diretorio);
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
+                Console.WriteLine("Dados carregados com sucesso!");  
                 Console.ReadKey();
-
+                
             }
             else if (resp != "S" || resp != "N")
-            {
+            {                
                 Console.WriteLine("Resposta inválida");
-                Console.WriteLine("Os dados estão corretos? (S/N)");
+                Console.Write("Os dados estão corretos? (S/N): ");
                 resp = Console.ReadLine().ToUpper();
                 // criar while para resposta incorreta
             }
@@ -67,12 +78,43 @@ namespace LeilaoEntrega
         public static void LerListaEntregas()
         {
             Console.Clear();
-            string arquivo;
+            string diretorio;
+            string resp;
+            int TamanhoMatriz = 0;
             Console.WriteLine("_____ Leilão de entregas _____");
-            Console.WriteLine("2 - Carregar lista de entregas");            
-            arquivo = LerArquivoTxt();
-            System.Console.WriteLine("Conteúdo do texto\n\n" + arquivo);
-            Console.ReadKey();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("2 - Carregar lista de entregas");
+            Console.WriteLine("------------------------------");
+            diretorio = LerArquivoTxt();
+            string txt = File.ReadAllText(diretorio);
+            Console.WriteLine("\nConteúdo do arquivo");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(txt);
+            Console.WriteLine("------------------------------");
+            Console.Write("Os dados estão corretos? (S/N): ");
+            resp = Console.ReadLine().ToUpper();
+            if (resp == "S")
+            {
+                Console.Clear();
+                Console.WriteLine("_____ Leilão de entregas _____");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("LISTA ENTREGAS");
+                Console.WriteLine("------------------------------");
+                TamanhoMatriz = LerTamanhoMatriz(diretorio);
+                AlimentarMatriz(TamanhoMatriz, diretorio);
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
+                Console.WriteLine("Dados carregados com sucesso!");
+                Console.ReadKey();
+
+            }
+            else if (resp != "S" || resp != "N")
+            {
+                Console.WriteLine("Resposta inválida");
+                Console.Write("Os dados estão corretos? (S/N): ");
+                resp = Console.ReadLine().ToUpper();
+                // criar while para resposta incorreta
+            }
         }
 
         public static void AlimentarMatriz(int tamanhoMatriz, string diretorio)
@@ -112,7 +154,7 @@ namespace LeilaoEntrega
 
         public static string LerArquivoTxt()
         {
-            Console.WriteLine("Informe o diretório do arquivo txt:");                         
+            Console.Write("Informe o diretório do arquivo txt: ");                         
             string diretorio = Console.ReadLine();
             return diretorio;
         }
