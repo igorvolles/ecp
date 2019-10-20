@@ -49,6 +49,7 @@ namespace LeilaoEntrega
             if (resp == "S")
             {
                 matriz = LerTamanhoMatriz(diretorio);
+                AlimentarMatriz(matriz, diretorio);
                 Console.WriteLine("Dados carregados com sucesso!");
                 Console.WriteLine("Matriz " + matriz + " x " + matriz + " criada");
                 Console.ReadKey();
@@ -56,9 +57,10 @@ namespace LeilaoEntrega
             }
             else if (resp != "S" || resp != "N")
             {
-                Console.WriteLine("Resposra inválida");
+                Console.WriteLine("Resposta inválida");
                 Console.WriteLine("Os dados estão corretos? (S/N)");
                 resp = Console.ReadLine().ToUpper();
+                // criar while para resposta incorreta
             }
         }
 
@@ -73,19 +75,27 @@ namespace LeilaoEntrega
             Console.ReadKey();
         }
 
-        public static void MatrizEndereco(int tamanhoMatriz)
+        public static void AlimentarMatriz(int tamanhoMatriz, string diretorio)
         {
-            int linha = tamanhoMatriz;
-            int coluna = tamanhoMatriz;
-            Console.WriteLine("matriz de endereços");
-            int[,] matriz = new int[linha, coluna];
-            for (int j = 0; j < matriz.Length; j++) //ler  coluna
+            StreamReader file = new StreamReader(diretorio);
+            int linha = int.Parse(file.ReadLine());
+            int coluna = linha;
+            string[,] matriz = new string[linha, coluna];
+            for  (int j = 0; j < coluna; j++)
             {
-                for (int i = 1; i <= matriz.Length; i++) //ler linha
+                for (int i = 0; i < linha; i++)
                 {
-                    //matriz[j, i] = Convert.ToInt32(file.ReadLine());
+                    matriz[i, j] = file.ReadLine(); // como incluir a porra do separador
                 }
             }
+            for (int i = 0; i < linha; i++)
+            {
+                for (int j = 0; j < coluna; j++)
+                {
+                    Console.Write(matriz[i,j]);
+                }
+            }
+            Console.ReadLine();
         }
 
         public static int LerTamanhoMatriz(string txt)
