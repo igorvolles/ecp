@@ -6,6 +6,7 @@ using System.IO;
 
 namespace LeilaoEntrega
 {
+    //Solução desenvolvido por Igor Volles e Matheus Alcantara
 
     public class Program
     {
@@ -71,7 +72,9 @@ namespace LeilaoEntrega
                 AlimentarMatriz1(diretorio);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
-                Console.WriteLine("Dados carregados com sucesso!");  
+                Console.WriteLine("Dados carregados com sucesso!");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("Pressione uma telca para voltar ao menu");
                 Console.ReadKey();
                 opcao = 0;
                 
@@ -115,6 +118,8 @@ namespace LeilaoEntrega
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
                 Console.WriteLine("Dados carregados com sucesso!");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("Pressione uma telca para voltar ao menu");
                 Console.ReadKey();
                 opcao = 0;
 
@@ -200,6 +205,9 @@ namespace LeilaoEntrega
         public static void MostrarMatriz()
         {
             Console.Clear();
+            Console.WriteLine("Lista de destinos");
+            Console.WriteLine("------------------");
+            Console.WriteLine("A B C D");
             for (int i = 0; i < linha1; i++)
             {
                 for (int j = 0; j < coluna1; j++)
@@ -210,6 +218,8 @@ namespace LeilaoEntrega
                 Console.WriteLine("");
             }
             Console.WriteLine("");
+            Console.WriteLine("Lista de entregas");
+            Console.WriteLine("------------------");
             for (int i = 0; i < linha2; i++)
             {
                 for (int j = 0; j < coluna2; j++)
@@ -219,6 +229,8 @@ namespace LeilaoEntrega
                 }
                 Console.WriteLine("");
             }
+            Console.WriteLine("------------------");
+            Console.WriteLine("Pressione uma telca para voltar ao menu");
             Console.ReadKey();
             opcao = 0;
         }
