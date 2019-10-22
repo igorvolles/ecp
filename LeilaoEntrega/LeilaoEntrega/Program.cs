@@ -7,30 +7,39 @@ using System.IO;
 namespace LeilaoEntrega
 {
 
-    class Program
+    public class Program
     {
+        public static string[,] matriz1;
+        public static string[,] matriz2;
+        public static int linha1, linha2;
+        public static int coluna1, coluna2;
+        public static int opcao = 0;
         static void Main(string[] args)
         {
-            int opcao = 0;
-
-            Console.WriteLine("_____ LEILÃO DE ENTREGAS _____");
-            Console.WriteLine("Escolha uma das opções abaixo:");
-            Console.WriteLine("1 - Carregar lista de destinos");
-            Console.WriteLine("2 - Carregar lista de entregas");
-            Console.WriteLine("3 - Exibir sequência de entregas");
-            Console.Write("Op: ");
-            opcao = Convert.ToInt16(Console.ReadLine());
-
-            switch (opcao)
+            while(opcao == 0)
             {
-                case 1: LerListaDestino();                                                          
-                    break;          
-                case 2: LerListaEntregas();
-                    break;
-                case 3:                     
-                    //exibir sequência de entregas                        
-                    break;                    
-            }                       
+                Console.Clear();
+                Console.WriteLine("_____ LEILÃO DE ENTREGAS _____");
+                Console.WriteLine("Escolha uma das opções abaixo:");
+                Console.WriteLine("1 - Carregar lista de destinos");
+                Console.WriteLine("2 - Carregar lista de entregas");
+                Console.WriteLine("3 - Exibir sequência de entregas");
+                Console.Write("Op: ");
+                opcao = Convert.ToInt16(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 1:
+                        LerListaDestino();
+                        break;
+                    case 2:
+                        LerListaEntregas();
+                        break;
+                    case 3:
+                        MostrarMatriz();
+                        break;
+                }
+            }
         }
 
         public static void LerListaDestino()
@@ -59,11 +68,12 @@ namespace LeilaoEntrega
                 Console.WriteLine("LISTA DE DESTINOS");
                 Console.WriteLine("------------------------------");
                 TamanhoMatriz = LerTamanhoMatriz(diretorio);
-                AlimentarMatriz(diretorio);
+                AlimentarMatriz1(diretorio);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
                 Console.WriteLine("Dados carregados com sucesso!");  
                 Console.ReadKey();
+                opcao = 0;
                 
             }
             else if (resp != "S" || resp != "N")
@@ -101,11 +111,12 @@ namespace LeilaoEntrega
                 Console.WriteLine("LISTA ENTREGAS");
                 Console.WriteLine("------------------------------");
                 TamanhoMatriz = LerTamanhoMatriz(diretorio);
-                AlimentarMatriz(diretorio);
+                AlimentarMatriz2(diretorio);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Matriz " + TamanhoMatriz + " x " + TamanhoMatriz + " criada");
                 Console.WriteLine("Dados carregados com sucesso!");
                 Console.ReadKey();
+                opcao = 0;
 
             }
             else if (resp != "S" || resp != "N")
@@ -117,27 +128,54 @@ namespace LeilaoEntrega
             }
         }
 
-        public static void AlimentarMatriz(string diretorio)
+        public static void AlimentarMatriz1(string diretorio)
         {
             StreamReader file = new StreamReader(diretorio);
-            int linha = int.Parse(file.ReadLine());
-            int coluna = linha;
-            string[,] matriz = new string[linha, coluna];
-            for (int i = 0; i < linha; i++)
+            linha1 = int.Parse(file.ReadLine());
+            coluna1 = linha1;
+            matriz1 = new string[linha1, coluna1];
+            for (int i = 0; i < linha1; i++)
             {
                 string linhaLida = file.ReadLine();
                 string[] dados = linhaLida.Split(',');
-                for (int j = 0; j < coluna; j++)
+                for (int j = 0; j < coluna1; j++)
                 {
-                    matriz[i, j] = dados[j];
+                    matriz1[i, j] = dados[j];
                 }
-                matriz[i, coluna - 1] = dados[coluna - 1];
+                matriz1[i, coluna1 - 1] = dados[coluna1 - 1];
             }
-            for (int i = 0; i < linha; i ++)
+            for (int i = 0; i < linha1; i ++)
             {
-                for (int j = 0; j < coluna; j++)
+                for (int j = 0; j < coluna1; j++)
                 {
-                    Console.Write(matriz[i, j]);
+                    Console.Write(matriz1[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine("");
+            }
+        }
+
+        public static void AlimentarMatriz2(string diretorio)
+        {
+            StreamReader file = new StreamReader(diretorio);
+            linha2 = int.Parse(file.ReadLine());
+            coluna2 = linha2;
+            matriz2 = new string[linha2, coluna2];
+            for (int i = 0; i < linha2; i++)
+            {
+                string linhaLida = file.ReadLine();
+                string[] dados = linhaLida.Split(',');
+                for (int j = 0; j < coluna2; j++)
+                {
+                    matriz2[i, j] = dados[j];
+                }
+                matriz2[i, coluna2 - 1] = dados[coluna2 - 1];
+            }
+            for (int i = 0; i < linha2; i++)
+            {
+                for (int j = 0; j < coluna2; j++)
+                {
+                    Console.Write(matriz2[i, j]);
                     Console.Write(" ");
                 }
                 Console.WriteLine("");
@@ -157,6 +195,32 @@ namespace LeilaoEntrega
             Console.Write("Informe o diretório do arquivo txt: ");                         
             string diretorio = Console.ReadLine();
             return diretorio;
+        }
+
+        public static void MostrarMatriz()
+        {
+            Console.Clear();
+            for (int i = 0; i < linha1; i++)
+            {
+                for (int j = 0; j < coluna1; j++)
+                {
+                    Console.Write(matriz1[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+            for (int i = 0; i < linha2; i++)
+            {
+                for (int j = 0; j < coluna2; j++)
+                {
+                    Console.Write(matriz2[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine("");
+            }
+            Console.ReadKey();
+            opcao = 0;
         }
     }
 }
