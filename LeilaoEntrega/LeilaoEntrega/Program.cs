@@ -25,6 +25,7 @@ namespace LeilaoEntrega
                 Console.WriteLine("1 - Carregar lista de destinos");
                 Console.WriteLine("2 - Carregar lista de entregas");
                 Console.WriteLine("3 - Exibir sequência de entregas");
+                Console.WriteLine("4 - Sair");
                 Console.Write("Op: ");
                 opcao = Convert.ToInt16(Console.ReadLine());
 
@@ -38,6 +39,9 @@ namespace LeilaoEntrega
                         break;
                     case 3:
                         MostrarMatriz();
+                        break;
+                    case 4:
+                        Environment.Exit(4);
                         break;
                 }
             }
@@ -82,9 +86,10 @@ namespace LeilaoEntrega
             else if (resp != "S" || resp != "N")
             {                
                 Console.WriteLine("Resposta inválida");
-                Console.Write("Os dados estão corretos? (S/N): ");
-                resp = Console.ReadLine().ToUpper();
-                // criar while para resposta incorreta
+                Console.WriteLine("Necessário repetir a operação");
+                Console.WriteLine("Pressione uma telca para continuar");
+                Console.ReadKey();
+                opcao = 0;                
             }
         }
 
@@ -127,8 +132,12 @@ namespace LeilaoEntrega
             else if (resp != "S" || resp != "N")
             {
                 Console.WriteLine("Resposta inválida");
-                Console.Write("Os dados estão corretos? (S/N): ");
-                resp = Console.ReadLine().ToUpper();
+                Console.WriteLine("Necessário repetir a operação");
+                Console.WriteLine("Pressione uma telca para continuar");
+                Console.ReadKey();
+                opcao = 0;
+                //Console.Write("Os dados estão corretos? (S/N): ");
+                //resp = Console.ReadLine().ToUpper();
                 // criar while para resposta incorreta
             }
         }
@@ -136,8 +145,8 @@ namespace LeilaoEntrega
         public static void AlimentarMatriz1(string diretorio)
         {
             StreamReader file = new StreamReader(diretorio);
-            linha1 = int.Parse(file.ReadLine());
-            coluna1 = linha1;
+            linha1 = int.Parse(file.ReadLine())+1;
+            coluna1 = linha1-1;
             matriz1 = new string[linha1, coluna1];
             for (int i = 0; i < linha1; i++)
             {
@@ -164,7 +173,7 @@ namespace LeilaoEntrega
         {
             StreamReader file = new StreamReader(diretorio);
             linha2 = int.Parse(file.ReadLine());
-            coluna2 = linha2;
+            coluna2 = 3;
             matriz2 = new string[linha2, coluna2];
             for (int i = 0; i < linha2; i++)
             {
@@ -207,7 +216,6 @@ namespace LeilaoEntrega
             Console.Clear();
             Console.WriteLine("Lista de destinos");
             Console.WriteLine("------------------");
-            Console.WriteLine("A B C D");
             for (int i = 0; i < linha1; i++)
             {
                 for (int j = 0; j < coluna1; j++)
